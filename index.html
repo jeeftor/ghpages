@@ -4,31 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VOOKIE</title>
+    <link rel="stylesheet" href="./neon.css"> <!-- Include sequence.css -->
     <style>
-        /* Set the background image */
+        /* Existing styles */
         body {
             margin: 0;
             padding: 0;
-            height: 120vh;
+            height: 100vh; /* Scale to browser height */
             background: url('background.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-size: contain; /* Show the full image */
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Poppins', sans-serif; /* Cool font */
         }
 
-        /* Style the text */
         h1 {
             font-size: 15rem;
             color: white;
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
     </style>
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include lettering.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
 </head>
 <body>
-    <h1>VOOKIE</h1>
+      
+
+    <div class="row">
+       <div class="neons col-12">
+          <h1><em>vookie.net</em></h1>
+       </div>
+    </div>
+ </div>
+
 </body>
 </html>
