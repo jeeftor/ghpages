@@ -3,49 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOOKIE</title>
-    <link rel="stylesheet" href="./neon.css"> <!-- Include sequence.css -->
+    <title>US Time Zones Clock</title>
     <style>
-        /* Existing styles */
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh; /* Scale to browser height */
-            background: url('background.jpg') no-repeat center center fixed;
-            background-size: contain; /* Show the full image */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            font-family: 'Poppins', sans-serif; /* Cool font */
+            background-color: #f0f0f0;
         }
-
-        h1 {
-            font-size: 15rem;
-            color: white;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .clock {
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
+            width: 180px;
+            height: 150px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
+        .clock:hover {
+            transform: scale(1.05);
+        }
+        .time {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        #easternTime { background-color: #F5A623; } /* Orange */
+        #centralTime { background-color: #4A90E2; } /* Blue */
+        #mountainTime { background-color: #8B572A; } /* Brown */
+        #pacificTime { background-color: #D0021B; } /* Red */
+        #alaskaTime { background-color: #0A7E07; } /* Green */
+        #hawaiiTime { background-color: #7ED321; } /* Lime Green */
     </style>
-    <!-- Load Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include lettering.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
 </head>
 <body>
-      
 
-    <div class="row">
-       <div class="neons col-12">
-          <h1><em>vookie.net</em></h1>
-       </div>
+    <div class="clock" id="easternTime">
+        <h2 style="color: white;">Eastern Time</h2>
+        <div class="time" style="color: white;">00:00:00</div>
     </div>
- </div>
 
+    <div class="clock" id="centralTime">
+        <h2 style="color: white;">Central Time</h2>
+        <div class="time" style="color: white;">00:00:00</div>
+    </div>
+
+    <div class="clock" id="mountainTime">
+        <h2 style="color: white;">Mountain Time</h2>
+        <div class="time" style="color: white;">00:00:00</div>
+    </div>
+
+    <div class="clock" id="pacificTime">
+        <h2 style="color: white;">Pacific Time</h2>
+        <div class="time" style="color: white;">00:00:00</div>
+    </div>
+
+    <div class="clock" id="alaskaTime">
+        <h2 style="color: white;">Alaska Time</h2>
+        <div class="time" style="color: white;">00:00:00</div>
+    </div>
+
+    <div class="clock" id="hawaiiTime">
+        <h2 style="color: white;">Hawaii Time</h2>
+        <div class="time" style="color: white;">00:00:00</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            function updateTime() {
+                const now = new Date();
+                const offsets = [
+                    { name: 'easternTime', offset: -5 },
+                    { name: 'centralTime', offset: -6 },
+                    { name: 'mountainTime', offset: -7 },
+                    { name: 'pacificTime', offset: -8 },
+                    { name: 'alaskaTime', offset: -9 },
+                    { name: 'hawaiiTime', offset: -10 }
+                ];
+
+                offsets.forEach(zone => {
+                    let utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+                    let zoneTime = new Date(utc + (3600000 * zone.offset));
+                    document.getElementById(zone.name).querySelector('.time').textContent = zoneTime.toLocaleTimeString('en-US');
+                });
+            }
+
+            // Update time every second
+            setInterval(updateTime, 1000);
+            // Initial call to set the time immediately
+            updateTime();
+        });
+    </script>
 </body>
 </html>
